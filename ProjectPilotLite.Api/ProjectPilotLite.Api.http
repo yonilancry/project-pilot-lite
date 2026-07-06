@@ -1,6 +1,64 @@
-@ProjectPilotLite.Api_HostAddress = http://localhost:5095
+@host = http://localhost:5123
 
-GET {{ProjectPilotLite.Api_HostAddress}}/weatherforecast/
+### Tableau de bord
+GET {{host}}/api/dashboard
 Accept: application/json
 
-###
+### Liste des projets
+GET {{host}}/api/projects
+Accept: application/json
+
+### Créer un projet
+# @name createProject
+POST {{host}}/api/projects
+Content-Type: application/json
+
+{
+  "name": "Migration SI",
+  "description": "Refonte du SI interne",
+  "owner": "A. Martin",
+  "startDate": "2026-09-01",
+  "deadline": "2026-12-15",
+  "status": "InProgress"
+}
+
+### Détail d'un projet
+@projectId = {{createProject.response.body.id}}
+GET {{host}}/api/projects/{{projectId}}
+Accept: application/json
+
+### Modifier le statut d'un projet
+PATCH {{host}}/api/projects/{{projectId}}/status
+Content-Type: application/json
+
+{ "status": "Done" }
+
+### Ajouter une tâche
+POST {{host}}/api/projects/{{projectId}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Cadrage technique",
+  "description": "Analyse de l'existant",
+  "priority": "High",
+  "status": "InProgress"
+}
+
+### Tâches d'un projet
+GET {{host}}/api/projects/{{projectId}}/tasks
+Accept: application/json
+
+### Ajouter un livrable
+POST {{host}}/api/projects/{{projectId}}/deliverables
+Content-Type: application/json
+
+{
+  "name": "Cahier des charges",
+  "type": "Documentation",
+  "pathOrUrl": "https://intranet/docs/cdc.pdf",
+  "comment": "Version 1"
+}
+
+### Livrables d'un projet
+GET {{host}}/api/projects/{{projectId}}/deliverables
+Accept: application/json
