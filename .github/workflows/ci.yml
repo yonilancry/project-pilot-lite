@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-windows:
+    name: Build complet (Windows, WPF inclus)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore ProjectPilotLite.sln
+
+      - name: Build
+        run: dotnet build ProjectPilotLite.sln --configuration Release --no-restore
+
+      - name: Publish API
+        run: dotnet publish ProjectPilotLite.Api/ProjectPilotLite.Api.csproj --configuration Release --no-build --output publish/api
+
+  build-linux:
+    name: Build API + Avalonia (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore (filtre sans WPF)
+        run: dotnet restore ProjectPilotLite.Local.slnf
+
+      - name: Build (filtre sans WPF)
+        run: dotnet build ProjectPilotLite.Local.slnf --configuration Release --no-restore
+
+      - name: Publish API
+        run: dotnet publish ProjectPilotLite.Api/ProjectPilotLite.Api.csproj --configuration Release --no-build --output publish/api
