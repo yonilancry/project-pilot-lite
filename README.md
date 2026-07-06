@@ -44,6 +44,7 @@ dotnet run --project ProjectPilotLite.Api
 
 - L'API démarre sur **http://localhost:5123**.
 - La base SQLite (`projectpilot.db`) est **créée et migrée automatiquement** au premier démarrage.
+- **Swagger** (en environnement Development) : <http://localhost:5123/swagger>.
 - Test rapide : ouvrir <http://localhost:5123/api/dashboard>, ou utiliser le fichier
   [`ProjectPilotLite.Api/ProjectPilotLite.Api.http`](ProjectPilotLite.Api/ProjectPilotLite.Api.http).
 
