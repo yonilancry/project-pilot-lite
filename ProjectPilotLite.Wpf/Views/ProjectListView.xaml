@@ -1,0 +1,28 @@
+<UserControl x:Class="ProjectPilotLite.Wpf.Views.ProjectListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,12">
+            <TextBlock Text="Projets" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,12,0" />
+            <Button Content="Nouveau projet" Command="{Binding CreateCommand}" Padding="10,4" Margin="0,0,8,0" />
+            <Button Content="Ouvrir" Command="{Binding OpenCommand}" Padding="10,4" Margin="0,0,8,0" />
+            <Button Content="Rafraîchir" Command="{Binding RefreshCommand}" Padding="10,4" />
+        </StackPanel>
+
+        <TextBlock DockPanel.Dock="Top" Text="{Binding ErrorMessage}" Foreground="#DC2626" TextWrapping="Wrap" Margin="0,0,0,8"
+                   Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}" />
+
+        <ListView ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Name}" Width="220" />
+                    <GridViewColumn Header="Responsable" DisplayMemberBinding="{Binding Owner}" Width="160" />
+                    <GridViewColumn Header="Statut" DisplayMemberBinding="{Binding StatusLabel}" Width="110" />
+                    <GridViewColumn Header="Échéance" DisplayMemberBinding="{Binding DeadlineText}" Width="110" />
+                    <GridViewColumn Header="Tâches" DisplayMemberBinding="{Binding TaskCount}" Width="70" />
+                    <GridViewColumn Header="Livrables" DisplayMemberBinding="{Binding DeliverableCount}" Width="80" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</UserControl>

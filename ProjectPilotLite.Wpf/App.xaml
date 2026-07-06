@@ -1,9 +1,30 @@
-﻿<Application x:Class="ProjectPilotLite.Wpf.App"
+<Application x:Class="ProjectPilotLite.Wpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ProjectPilotLite.Wpf"
-             StartupUri="MainWindow.xaml">
+             xmlns:vm="clr-namespace:ProjectPilotLite.Client.Shared.ViewModels;assembly=ProjectPilotLite.Client.Shared"
+             xmlns:views="clr-namespace:ProjectPilotLite.Wpf.Views"
+             xmlns:conv="clr-namespace:ProjectPilotLite.Wpf.Converters">
     <Application.Resources>
-         
+        <conv:DateTimeOffsetToDateTimeConverter x:Key="DateConverter" />
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+
+        <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+            <views:DashboardView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProjectListViewModel}">
+            <views:ProjectListView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProjectDetailViewModel}">
+            <views:ProjectDetailView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProjectCreateViewModel}">
+            <views:ProjectCreateView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TaskCreateViewModel}">
+            <views:TaskCreateView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DeliverableCreateViewModel}">
+            <views:DeliverableCreateView />
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -1,0 +1,62 @@
+<UserControl x:Class="ProjectPilotLite.Wpf.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="#F3F4F6" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="18" />
+            <Setter Property="Margin" Value="0,0,12,12" />
+            <Setter Property="MinWidth" Value="180" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+            <TextBlock Text="Tableau de bord" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,12,0" />
+            <Button Content="Rafraîchir" Command="{Binding RefreshCommand}" Padding="10,4" />
+        </StackPanel>
+
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="#DC2626" TextWrapping="Wrap" Margin="0,0,0,8"
+                   Visibility="{Binding HasError, Converter={StaticResource BoolToVisibility}}" />
+
+        <WrapPanel>
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Stats.TotalProjects}" FontSize="30" FontWeight="Bold" Foreground="#111827" />
+                    <TextBlock Text="Projets au total" Foreground="#4B5563" Margin="0,6,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Stats.ProjectsInProgress}" FontSize="30" FontWeight="Bold" Foreground="#111827" />
+                    <TextBlock Text="Projets en cours" Foreground="#4B5563" Margin="0,6,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Stats.ProjectsBlocked}" FontSize="30" FontWeight="Bold" Foreground="#111827" />
+                    <TextBlock Text="Projets bloqués" Foreground="#4B5563" Margin="0,6,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Stats.TotalTasks}" FontSize="30" FontWeight="Bold" Foreground="#111827" />
+                    <TextBlock Text="Tâches au total" Foreground="#4B5563" Margin="0,6,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Stats.CompletedTasks}" FontSize="30" FontWeight="Bold" Foreground="#111827" />
+                    <TextBlock Text="Tâches terminées" Foreground="#4B5563" Margin="0,6,0,0" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Stats.SubmittedDeliverables}" FontSize="30" FontWeight="Bold" Foreground="#111827" />
+                    <TextBlock Text="Livrables déposés" Foreground="#4B5563" Margin="0,6,0,0" />
+                </StackPanel>
+            </Border>
+        </WrapPanel>
+    </StackPanel>
+</UserControl>
