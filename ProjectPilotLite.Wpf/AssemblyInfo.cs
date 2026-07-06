@@ -8,4 +8,4 @@ using System.Windows;
                                                 //(used if a resource is not found in the page,
                                                 // app, or any theme specific resource dictionaries)
 )]
-git rm -r --cached ProjectPilotLite.Api/obj ProjectPilotLite.Core/obj ProjectPilotLite.Wpf/obj
+//git rm -r --cached ProjectPilotLite.Api/obj ProjectPilotLite.Core/obj ProjectPilotLite.Wpf/obj
