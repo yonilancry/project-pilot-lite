@@ -1,2 +1,5 @@
 <Solution>
+  <Project Path="ProjectPilotLite.Api/ProjectPilotLite.Api.csproj" />
+  <Project Path="ProjectPilotLite.Core/ProjectPilotLite.Core.csproj" />
+  <Project Path="ProjectPilotLite.Wpf/ProjectPilotLite.Wpf.csproj" />
 </Solution>
