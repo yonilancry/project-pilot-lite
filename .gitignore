@@ -1,0 +1,39 @@
+## Build artifacts
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+publish/
+[Pp]ublish/
+
+## .NET / Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+## Local database (SQLite) — generated at runtime, never committed
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+## Logs / OS
+*.log
+.DS_Store
+Thumbs.db
+
+## Local tooling notes (not part of the deliverable)
+CLAUDE.md

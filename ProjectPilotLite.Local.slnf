@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "path": "ProjectPilotLite.sln",
+    "projects": [
+      "ProjectPilotLite.Core\\ProjectPilotLite.Core.csproj",
+      "ProjectPilotLite.Api\\ProjectPilotLite.Api.csproj",
+      "ProjectPilotLite.Client.Shared\\ProjectPilotLite.Client.Shared.csproj",
+      "ProjectPilotLite.Avalonia\\ProjectPilotLite.Avalonia.csproj"
+    ]
+  }
+}
