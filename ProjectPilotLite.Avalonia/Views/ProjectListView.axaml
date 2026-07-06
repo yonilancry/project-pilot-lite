@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ProjectPilotLite.Client.Shared.ViewModels"
+             xmlns:pres="using:ProjectPilotLite.Client.Shared.Presentation"
+             x:Class="ProjectPilotLite.Avalonia.Views.ProjectListView"
+             x:DataType="vm:ProjectListViewModel">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
+            <TextBlock Text="Projets" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center" />
+            <Button Content="Nouveau projet" Command="{Binding CreateCommand}" />
+            <Button Content="Ouvrir" Command="{Binding OpenCommand}" />
+            <Button Content="Rafraîchir" Command="{Binding RefreshCommand}" />
+        </StackPanel>
+
+        <TextBlock DockPanel.Dock="Top" Text="{Binding ErrorMessage}" Foreground="#DC2626"
+                   IsVisible="{Binding HasError}" TextWrapping="Wrap" Margin="0,0,0,8" />
+
+        <Grid DockPanel.Dock="Top" Margin="8,0,8,4" ColumnDefinitions="2*,2*,*,*,90,90">
+            <TextBlock Grid.Column="0" Text="Nom" FontWeight="SemiBold" />
+            <TextBlock Grid.Column="1" Text="Responsable" FontWeight="SemiBold" />
+            <TextBlock Grid.Column="2" Text="Statut" FontWeight="SemiBold" />
+            <TextBlock Grid.Column="3" Text="Échéance" FontWeight="SemiBold" />
+            <TextBlock Grid.Column="4" Text="Tâches" FontWeight="SemiBold" />
+            <TextBlock Grid.Column="5" Text="Livrables" FontWeight="SemiBold" />
+        </Grid>
+
+        <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="pres:ProjectRow">
+                    <Grid ColumnDefinitions="2*,2*,*,*,90,90">
+                        <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Owner}" />
+                        <TextBlock Grid.Column="2" Text="{Binding StatusLabel}" />
+                        <TextBlock Grid.Column="3" Text="{Binding DeadlineText}" />
+                        <TextBlock Grid.Column="4" Text="{Binding TaskCount}" />
+                        <TextBlock Grid.Column="5" Text="{Binding DeliverableCount}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

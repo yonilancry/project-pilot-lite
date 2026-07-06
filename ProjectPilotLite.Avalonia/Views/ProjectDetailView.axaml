@@ -1,0 +1,95 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ProjectPilotLite.Client.Shared.ViewModels"
+             xmlns:pres="using:ProjectPilotLite.Client.Shared.Presentation"
+             x:Class="ProjectPilotLite.Avalonia.Views.ProjectDetailView"
+             x:DataType="vm:ProjectDetailViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.section">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,12,0,6" />
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer>
+        <StackPanel Spacing="6">
+            <Button Content="← Retour aux projets" Command="{Binding BackCommand}" HorizontalAlignment="Left" />
+
+            <TextBlock Text="{Binding ProjectName}" FontSize="24" FontWeight="Bold" Margin="0,8,0,0" />
+            <TextBlock Text="{Binding Owner}" Foreground="#4B5563" />
+            <TextBlock Text="{Binding DatesText}" Foreground="#4B5563" />
+            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,4,0,0" />
+
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="#DC2626" IsVisible="{Binding HasError}" TextWrapping="Wrap" />
+
+            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,8,0,0">
+                <TextBlock Text="Statut du projet :" VerticalAlignment="Center" />
+                <ComboBox ItemsSource="{Binding ProjectStatusOptions}" SelectedItem="{Binding SelectedProjectStatus}" MinWidth="160">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:CompileBindings="False">
+                            <TextBlock Text="{Binding Label}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Content="Changer le statut" Command="{Binding ChangeProjectStatusCommand}" />
+            </StackPanel>
+
+            <TextBlock Text="Tâches" Classes="section" />
+            <Button Content="Ajouter une tâche" Command="{Binding AddTaskCommand}" HorizontalAlignment="Left" />
+            <Grid Margin="8,6,8,4" ColumnDefinitions="3*,*,*">
+                <TextBlock Grid.Column="0" Text="Titre" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="1" Text="Priorité" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="2" Text="Statut" FontWeight="SemiBold" />
+            </Grid>
+            <ListBox ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}" MaxHeight="200">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="pres:TaskRow">
+                        <Grid ColumnDefinitions="3*,*,*">
+                            <TextBlock Grid.Column="0" Text="{Binding Title}" />
+                            <TextBlock Grid.Column="1" Text="{Binding PriorityLabel}" />
+                            <TextBlock Grid.Column="2" Text="{Binding StatusLabel}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,6,0,0">
+                <TextBlock Text="Nouveau statut :" VerticalAlignment="Center" />
+                <ComboBox ItemsSource="{Binding TaskStatusOptions}" SelectedItem="{Binding SelectedTaskStatus}" MinWidth="140">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:CompileBindings="False">
+                            <TextBlock Text="{Binding Label}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Content="Changer le statut" Command="{Binding ChangeTaskStatusCommand}" />
+            </StackPanel>
+
+            <TextBlock Text="Livrables" Classes="section" />
+            <Button Content="Ajouter un livrable" Command="{Binding AddDeliverableCommand}" HorizontalAlignment="Left" />
+            <Grid Margin="8,6,8,4" ColumnDefinitions="2*,*,*,3*">
+                <TextBlock Grid.Column="0" Text="Nom" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="1" Text="Type" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="2" Text="Statut" FontWeight="SemiBold" />
+                <TextBlock Grid.Column="3" Text="Référence" FontWeight="SemiBold" />
+            </Grid>
+            <ListBox ItemsSource="{Binding Deliverables}" SelectedItem="{Binding SelectedDeliverable}" MaxHeight="200">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="pres:DeliverableRow">
+                        <Grid ColumnDefinitions="2*,*,*,3*">
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                            <TextBlock Grid.Column="1" Text="{Binding TypeLabel}" />
+                            <TextBlock Grid.Column="2" Text="{Binding StatusLabel}" />
+                            <TextBlock Grid.Column="3" Text="{Binding PathOrUrl}" TextTrimming="CharacterEllipsis" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,6,0,0">
+                <Button Content="Valider" Command="{Binding ApproveDeliverableCommand}" />
+                <Button Content="Refuser" Command="{Binding RejectDeliverableCommand}" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

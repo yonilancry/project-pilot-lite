@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ProjectPilotLite.Client.Shared.ViewModels"
+             x:Class="ProjectPilotLite.Avalonia.Views.DashboardView"
+             x:DataType="vm:DashboardViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="#F3F4F6" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="18" />
+            <Setter Property="MinWidth" Value="180" />
+        </Style>
+        <Style Selector="Border.card TextBlock.value">
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#111827" />
+        </Style>
+        <Style Selector="Border.card TextBlock.caption">
+            <Setter Property="Foreground" Value="#4B5563" />
+            <Setter Property="Margin" Value="0,6,0,0" />
+        </Style>
+    </UserControl.Styles>
+
+    <StackPanel Spacing="16">
+        <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+            <TextBlock Text="Tableau de bord" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center" />
+            <Button Content="Rafraîchir" Command="{Binding RefreshCommand}" />
+        </StackPanel>
+
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="#DC2626" IsVisible="{Binding HasError}" TextWrapping="Wrap" />
+
+        <WrapPanel Orientation="Horizontal">
+            <Border Classes="card" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Classes="value" Text="{Binding Stats.TotalProjects}" />
+                    <TextBlock Classes="caption" Text="Projets au total" />
+                </StackPanel>
+            </Border>
+            <Border Classes="card" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Classes="value" Text="{Binding Stats.ProjectsInProgress}" />
+                    <TextBlock Classes="caption" Text="Projets en cours" />
+                </StackPanel>
+            </Border>
+            <Border Classes="card" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Classes="value" Text="{Binding Stats.ProjectsBlocked}" />
+                    <TextBlock Classes="caption" Text="Projets bloqués" />
+                </StackPanel>
+            </Border>
+            <Border Classes="card" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Classes="value" Text="{Binding Stats.TotalTasks}" />
+                    <TextBlock Classes="caption" Text="Tâches au total" />
+                </StackPanel>
+            </Border>
+            <Border Classes="card" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Classes="value" Text="{Binding Stats.CompletedTasks}" />
+                    <TextBlock Classes="caption" Text="Tâches terminées" />
+                </StackPanel>
+            </Border>
+            <Border Classes="card" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Classes="value" Text="{Binding Stats.SubmittedDeliverables}" />
+                    <TextBlock Classes="caption" Text="Livrables déposés" />
+                </StackPanel>
+            </Border>
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

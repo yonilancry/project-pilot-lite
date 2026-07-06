@@ -1,9 +1,22 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:vm="using:ProjectPilotLite.Client.Shared.ViewModels"
         x:Class="ProjectPilotLite.Avalonia.MainWindow"
-        Title="ProjectPilotLite.Avalonia">
-    Welcome to Avalonia!
+        x:DataType="vm:MainViewModel"
+        Title="ProjectPilot Lite"
+        Width="980" Height="660"
+        MinWidth="820" MinHeight="520">
+
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Background="#1F2937" Padding="16,10">
+            <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                <TextBlock Text="ProjectPilot Lite" Foreground="White"
+                           FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" />
+                <Button Content="Projets" Command="{Binding ShowProjectsCommand}" />
+                <Button Content="Tableau de bord" Command="{Binding ShowDashboardCommand}" />
+            </StackPanel>
+        </Border>
+
+        <ContentControl Content="{Binding Current}" Margin="16" />
+    </DockPanel>
 </Window>

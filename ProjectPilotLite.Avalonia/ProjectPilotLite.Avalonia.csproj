@@ -23,4 +23,10 @@
   <ItemGroup>
     <ProjectReference Include="..\ProjectPilotLite.Client.Shared\ProjectPilotLite.Client.Shared.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
