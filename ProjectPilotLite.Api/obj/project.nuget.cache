@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "R4UD+Q6JGio=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rapha\\Desktop\\project-pilot-lite\\ProjectPilotLite.Api\\ProjectPilotLite.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rapha\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.7\\microsoft.aspnetcore.openapi.10.0.7.nupkg.sha512",
+    "C:\\Users\\rapha\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Le package 'Microsoft.OpenApi' 2.0.0 présente une vulnérabilité de gravité élevé(e) connue, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc.",
+      "projectPath": "C:\\Users\\rapha\\Desktop\\project-pilot-lite\\ProjectPilotLite.Api\\ProjectPilotLite.Api.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\rapha\\Desktop\\project-pilot-lite\\ProjectPilotLite.Api\\ProjectPilotLite.Api.csproj",
+      "libraryId": "Microsoft.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}
